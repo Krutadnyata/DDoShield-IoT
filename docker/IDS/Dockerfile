@@ -1,4 +1,4 @@
-FROM ubuntu:23.10
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -20,6 +20,10 @@ RUN apt-get install -y --no-install-recommends \
     python3-pip
 
 RUN PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install --upgrade tensorflow-cpu
+
+RUN apt-get install -y python3-pip
+
+RUN pip3 install numpy==1.23.5 pandas==1.5.3
 
 COPY ids-online.py /ids-online.py
 COPY kmeans_model.pkl /kmeans_model.pkl
